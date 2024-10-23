@@ -1,12 +1,17 @@
 using namespace std;
 
 
+//Devuelve un entero random del 1 al 6
+
 int tirarDado()
 {
 
     return rand() % 6 + 1;
 }
 
+
+
+//Imprime dado en pantalla segun el numero que se le brinda
 
 string dibujarDado(int numero)
 {
@@ -60,6 +65,10 @@ string dibujarDado(int numero)
     }
     return dado;
 }
+
+
+
+//Imprime en pantalla todos los dados de la tirada
 
 void dibujarTirada(int arreglo[], int tamanio){
 
