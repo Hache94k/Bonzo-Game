@@ -46,6 +46,7 @@ int main()
         cout << endl << "J1 desea hacer tirada? Si ( 1 uno) / No (0 cero)" << endl;
         cin >> juega;
 
+
         while(juega == 1)
         {
             int tiradaj1 [cdj1];
@@ -60,6 +61,8 @@ int main()
             cout << tiradaj1[1] << endl;
             cout << tiradaj1[2] << endl << endl;
 
+            dibujarTirada(tiradaj1,cdj1);
+
 
 
             cout << "J1 desea hacer tirada? Si ( 1 uno) / No (0 cero)" << endl;
@@ -72,6 +75,7 @@ int main()
         rondaActual++;
 
     }
+
 
 
 
