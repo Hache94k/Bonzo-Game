@@ -48,33 +48,58 @@ int main()
     while(confirmar != 'S' && confirmar != 's')
     {
 
-        cout << "¿Nombre? ";
+        cout << endl <<"Nombre? ";
         cin >> nj1;
-        cout << endl << endl <<"¿Nombre del otro jugador? ";
+        cout << endl << endl <<"Nombre? ";
         cin >> nj2;
 
-        cout << endl << endl << "¿Confirmar nombres? (S/N)" << endl ;
+        cout << endl << endl << "Confirmar nombres? (S/N)" << endl ;
         cin >> confirmar;
-        cout << confirmar;
     }
 
 
     //while principal
     while(rondaActual <= 6 && j1Juega && j2Juega)
     {
-        cout << " ---- RONDA " << rondaActual << " -----" << endl << endl;
+        system("cls");
+        // TABLERO --------------------
 
-        cout << " ---- JUEGA J1 = "<< nj1 << "-----" << endl << endl;
+        cout << "BONZO" << endl;
+        cout << "--------------------------------------------------------" << endl;
+        cout << nj1 << ": " << ptj1 << " puntos          " << nj2 << ": " << ptj2 << " puntos" << endl << endl;
 
-        int juega = 0;
-        cout << endl << "J1 desea hacer tirada? Si ( 1 uno) / No (0 cero)" << endl;
-        cin >> juega;
+        cout << "TURNO DE "<< nj1 << endl << endl;
+
+        cout <<"+---------------------------------+" << endl;
+        cout << "RONDA #" << rondaActual << endl;
+        cout << "PUNTOS DE LA RONDA: " << endl;
+        cout << "LANZAMIENTOS: " << endl;
+        cout <<"+---------------------------------+" << endl;
 
 
         // while j1
 
-        while(juega == 1)
+
+        char continuar = 'S';
+
+        cout << endl <<"Continuar? (S/N)" << endl;
+        cin >> continuar;
+
+        while(continuar == 's' || continuar == 'S')
         {
+            // TABLERO --------------------
+            system("cls");
+            cout << "BONZO" << endl;
+            cout << "--------------------------------------------------------" << endl;
+            cout << nj1 << ": " << ptj1 << " puntos          " << nj2 << ": " << ptj2 << " puntos" << endl << endl;
+
+            cout << "TURNO DE "<< nj1 << endl << endl;
+
+            cout <<"+---------------------------------+" << endl;
+            cout << "RONDA #" << rondaActual << endl;
+            cout << "PUNTOS DE LA RONDA: " << endl;
+            cout << "LANZAMIENTOS: " << endl;
+            cout <<"+---------------------------------+" << endl;
 
             int tiradaj1 [cdj1];  // array segun cantidad de dados
 
@@ -84,15 +109,19 @@ int main()
                 tiradaj1[x] = tirarDado();
             }
 
-            cout << endl << tiradaj1[0] << endl;
-            cout << tiradaj1[1] << endl;
-            cout << tiradaj1[2] << endl << endl;
 
             dibujarTirada(tiradaj1,cdj1);
 
+            ptj1 += sumarArray(tiradaj1,cdj1);
 
-            cout << "J1 desea hacer tirada? Si ( 1 uno) / No (0 cero)" << endl;
-            cin >> juega;
+
+            cout << "PUNTAJE TOTAL ACUMULADO: " << ptj1 << endl;
+
+
+
+
+            cout << endl <<"Continuar? (S/N)" << endl;
+            cin >> continuar;
 
         }
 

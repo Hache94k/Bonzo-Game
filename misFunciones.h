@@ -70,14 +70,30 @@ string dibujarDado(int numero)
 
 //Imprime en pantalla todos los dados de la tirada
 
-void dibujarTirada(int arreglo[], int tamanio){
+void dibujarTirada(int arreglo[], int tamanio)
+{
 
-    for( int x = 0; x < tamanio ; x++){
-        cout << dibujarDado(arreglo[x]) << endl;
+    switch(tamanio)
+    {
+
+    case 1:
+        cout << dibujarDado(arreglo[0]) << endl;
+        break;
+
+    case 2:
+        cout << dibujarDado(arreglo[0]) << dibujarDado(arreglo[1]) << endl;
+        break;
+
+    case 3:
+        cout << dibujarDado(arreglo[0]) << dibujarDado(arreglo[1]) << dibujarDado(arreglo[2]) << endl;
+
+        break;
     }
+
+
 }
 
-/*
+
 
 
 int sumarArray(int arreglo[], int tamanio) {
@@ -86,10 +102,8 @@ int sumarArray(int arreglo[], int tamanio) {
     for (int i = 0; i < tamanio; ++i) {
         suma += arreglo[i];
     }
-
     return suma;
 }
 
-*/
 
 
