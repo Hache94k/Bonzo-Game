@@ -15,7 +15,7 @@ int main()
 
     char confirmar;
 
-    bool salida=true;
+    bool salida= true;
 
 
     while(salida)
@@ -35,7 +35,6 @@ int main()
         {
         case 1:
         {
-
             system("cls");
 
             // funciones de las librerias para poder generar n RANDOMS
@@ -62,7 +61,8 @@ int main()
 
             int rondaActual = 1;  // N° Ronda Actual
 
-            int np = rondaActual;   //numero Prohibido igual a ronda actual;
+            //numero Prohibido igual a ronda actual;
+
 
 
             // WHILE PEDIR NOMBRES
@@ -89,9 +89,11 @@ int main()
             //while principal
             while(rondaActual <= 6 && j1Juega && j2Juega)
             {
+                int puntajeRondaj1 = 0; // acumulador de los puntajes de cada tirada en una ronda
+                int puntajeRondaj2 = 0; // acumulador de los puntajes de cada tirada en una ronda
                 system("cls");
-                // TABLERO --------------------
 
+                // TABLERO --------------------
                 cout << "BONZO" << endl;
                 cout << "--------------------------------------------------------" << endl;
                 cout << nj1 << ": " << ptj1 << " puntos          " << nj2 << ": " << ptj2 << " puntos" << endl << endl;
@@ -99,7 +101,7 @@ int main()
                 cout << "TURNO DE "<< nj1 << endl << endl;
 
                 cout <<"+---------------------------------+" << endl;
-                cout << "RONDA #" << rondaActual << endl;
+                cout << "RONDA #" << rondaActual << endl;  // MUESTRA RONDA ACTUAL
                 cout << "PUNTOS DE LA RONDA: " << endl;
                 cout << "LANZAMIENTOS: " << endl;
                 cout <<"+---------------------------------+" << endl;
@@ -113,8 +115,13 @@ int main()
                 cout << endl <<"Continuar? (S/N)" << endl;
                 cin >> continuar;
 
+                int lanzamiento = 0; // CONTADOR DE LANZAMIENTOS
+                int contProhibidos = 0;
+
+
                 while(continuar == 's' || continuar == 'S')
                 {
+                    int puntajeTirada = 0;   //suma el valor de cantidaddados por tirada
                     // TABLERO --------------------
                     system("cls");
                     cout << "BONZO" << endl;
@@ -125,46 +132,97 @@ int main()
 
                     cout <<"+---------------------------------+" << endl;
                     cout << "RONDA #" << rondaActual << endl;
-                    cout << "PUNTOS DE LA RONDA: " << endl;
-                    cout << "LANZAMIENTOS: " << endl;
+                    cout << "PUNTOS DE LA RONDA: " << puntajeRondaj1<< endl;
+                    cout << "LANZAMIENTOS: " << lanzamiento+1 << endl;
                     cout <<"+---------------------------------+" << endl;
 
                     int tiradaj1 [cdj1];  // array segun cantidad de dados
+
+
 
                     for( int x = 0; x < cdj1; x++)
                     {
 
                         tiradaj1[x] = tirarDado();
+
+                        // if - bonzoDormir() se le saca 1 dado al otro jugador;
+
+
+                        //para saber si salio 1, 2 o 3 veces el numero prohibido
+                        if (tiradaj1[x] == rondaActual)
+                        {
+                            contProhibidos++;
+                        }
                     }
 
+                    lanzamiento++;  // SUMA 1 LANZAMIENTO
+
+                    cout<<"El numero prohibido es: "<<rondaActual<<endl <<endl;
+                    cout <<"lanzamiento #" << lanzamiento << endl << endl;
 
                     dibujarTirada(tiradaj1,cdj1);
 
-                    ptj1 += sumarArray(tiradaj1,cdj1);
 
+                    puntajeTirada = sumarArray(tiradaj1,cdj1);
 
-                    cout << "PUNTAJE TOTAL ACUMULADO: " << ptj1 << endl;
+                    //aca es donde vamos accionar segun salga 1, 2 o 3 dados prohibidos
 
+                    if (contProhibidos==1)
+                    {
 
+                        ptj1 -= puntajeRondaj1; //esto es para que no se sumen los puntos de la ronda en el contador total
+                        cout <<"SALIO EL NUMERO PROHIBIDO, PIERDE LOS PUNTOS Y EL TURNO"<<endl;
+                        system("pause");
+                        break;
+                    }
+                    //completar
+                    if (contProhibidos==2)
+                    {
+                        cout << "salio 2 n prohibidos" << endl ;
+                        system("pause");
+                        break;
+                    }
+                    //completar
+                    if (contProhibidos==3)
+                    {
+                        cout << "salio 3 n prohibidos" << endl ;
+                        j1Juega = false;
 
+                        system("pause");
+                        break;
+                    }
+
+                    puntajeRondaj1+=puntajeTirada;  //aca se suman las tiradas en un acumular de ronda
+
+                    cout << "SUMASTE " << puntajeTirada << " PUNTOS " <<endl;
 
                     cout << endl <<"Continuar? (S/N)" << endl;
+
                     cin >> continuar;
 
                 }
+                ptj1 += puntajeRondaj1;   //aca se suma el puntaje de la ronda en el acumulador total
 
                 //Inicia WHILE J2"
                 cout << endl << " ---- JUEGA J2 -----" << endl << endl;
 
 
 
-                rondaActual++;
+                rondaActual++;  // SUMA 1 RONDA ACTUAL
+
 
             }
 
 
+            // MOSTRAR GANADOR Y PERDEDOR Y MOSTRAR CREDITOS O AGRADECIMIENTOS
+
+            // MOSTRAR TABLA FINAL
+
+            // ADICIONAR EL GANAR AL ARRAY DE GANADORES
 
             cout << "FIN DEL JUEGO"<< endl;
+
+
 
 
             system("pause");
@@ -227,7 +285,4 @@ int main()
     }
     return 0;
 }
-
-
-
 
