@@ -131,7 +131,7 @@ void incluirAlRankDe5(int puntajeGanador, string nombreGanador, int (&puntajes)[
             if(x != 4)
             {
 
-                for(int i = 4; i> x; i--)
+                for(int i = 4; i > x; i--)
                 {
                     puntajes[i] = puntajes[i-1];
                     nombres[i] = nombres[i-1];
@@ -164,28 +164,34 @@ void juegaPrimero(string &nj1, string &nj2)
 
     string auxNombre;
     int dado = tirarDado();
-    cout<<dibujarDado(dado)<<endl;
+
+
+    cout<< endl << "TIRAREMOS UN DADO PARA VER QUIEN EMPIEZA, SI ES..." << endl << endl;
+    cout<<"IMPAR, INICIA: "<< nj1 << "       PAR, INICIA: " << nj2 << endl << endl << endl << endl;
+
+    system("pause");
 
     if (esPar(dado))
     {
         //invertimos las variables porque si es par comienza el j2
         auxNombre=nj2;
         nj2= nj1;
-        nj1=auxNombre;
+        nj1= auxNombre;
 
-        cout<<"TIRAMOS EL DADO Y SALIO UN NUMERO PAR"<<endl;
-        cout<<"EL NUMERO ES: "<<dado<<endl;
-        cout<<"COMIENZA A JUGAR: "<<nj1<<endl;
+        cout << dibujarDado(dado)<<endl;
+
+        cout<<"EL NUMERO ES: "<<dado<<endl << endl;
+        cout<<"COMIENZA A JUGAR: "<<nj1<<endl << endl;
         system("pause");
 
     }
     else
     {
+        cout<< endl;
+        cout<< endl<< endl << dibujarDado(dado)<<endl;
 
-        cout<<"TIRAMOS EL DADO Y SALIO UN NUMERO IMPAR"<<endl;
-        cout<<"EL NUMERO ES: "<<dado<<endl;
-        cout<<"COMIENZA A JUGAR: "<<nj1<< endl << endl;
-
+        cout<<"EL NUMERO ES: "<<dado<<endl << endl;
+        cout<<"COMIENZA A JUGAR: "<<nj1<<endl << endl;
         system("pause");
 
     }
@@ -208,4 +214,52 @@ void mostrarCreditos()
     system("pause");
 }
 
+void mostrarTitulo(){
+    cout << "######   #######  ###   ##  #######   #######  " << endl;
+    cout << "##   ##  ##   ##  ####  ##      ##    ##   ##  " << endl;
+    cout << "######   ##   ##  ##  ####    ##      ##   ##  " << endl;
+    cout << "##   ##  ##   ##  ##   ###  ##        ##   ##  " << endl;
+    cout << "######   #######  ##    ##  #######   #######  " << endl;
+    cout << "---------------------------------------------"<< endl << endl;
+
+}
+
+ // MUESTRA TABLA FINAL ANTES QUE SE CIERRE EL JUEGO BONZO Y VUELVA AL MENU
+
+void mostrarTablaPuntajes(string nj1, int puntos1, int puntosCada50_1, int bonzo1, int mayorLanzamientos1,
+                           string nj2, int puntos2, int puntosCada50_2, int bonzo2, int mayorLanzamientos2) {
+    cout << "BONZO" << endl;
+    cout << "--------------------------------------------------------" << endl;
+    cout << "| HITO\t\t\t| " << nj1 << "\t | " << nj2 << "\t |" << endl;
+    cout << "--------------------------------------------------------" << endl;
+    cout << "| Puntos\t\t| " << puntos1 << " PTS\t | " << puntos2 << " PTS\t |" << endl;
+    cout << "--------------------------------------------------------" << endl;
+    cout << "| Cada 50 puntos\t| " << puntosCada50_1 << " PTS\t | "
+         << puntosCada50_2 << " PTS\t |" << endl;
+    cout << "--------------------------------------------------------" << endl;
+    cout << "| Bonzo, Ve a dormir\t| " << bonzo1 << " PTS\t | " << bonzo2 << " PTS\t |" << endl;
+    cout << "--------------------------------------------------------" << endl;
+    cout << "| Mayor lanzamientos\t| " << mayorLanzamientos1 << " PTS\t | " << mayorLanzamientos2 << " PTS\t |" << endl;
+    cout << "--------------------------------------------------------" << endl;
+
+    int total1 = puntos1 + puntosCada50_1 + bonzo1 + mayorLanzamientos1;
+    int total2 = puntos2 + puntosCada50_2 + bonzo2 + mayorLanzamientos2;
+
+    cout << "| TOTAL\t\t\t| " << total1 << " PTS\t | " << total2 << " PTS\t |" << endl;
+    cout << "--------------------------------------------------------" << endl;
+
+    if (total1 > total2) {
+        cout << "GANADOR: " << nj1 << " con " << total1 << " puntos." << endl;
+    } else {
+        cout << "GANADOR: " << nj2 << " con " << total2 << " puntos." << endl;
+    }
+
+    cout << "Ingrese BONZO para continuar: ";
+    string input;
+    cin >> input;
+    while (input != "BONZO" && input != "bonzo") {
+        cout << "Ingrese BONZO para continuar: ";
+        cin >> input;
+    }
+}
 
