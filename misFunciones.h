@@ -70,7 +70,7 @@ string dibujarDado(int numero)
 
 //Imprime en pantalla todos los dados de la tirada
 
-void dibujarTirada(int arreglo[], int tamanio)
+void dibujarTirada(int arreglo[], int tamanio)  // TOMA COMO PARAMETRO EL ARREGLO QUE CORRESPONDE A LA CANTIDAD DE DADOS DE LA TIRADA SEGUND LA CANTIDAD DE DADOS QUE POSEE
 {
 
     switch(tamanio)
@@ -214,7 +214,8 @@ void mostrarCreditos()
     system("pause");
 }
 
-void mostrarTitulo(){
+void mostrarTitulo()
+{
     cout << "######   #######  ###   ##  #######   #######  " << endl;
     cout << "##   ##  ##   ##  ####  ##      ##    ##   ##  " << endl;
     cout << "######   ##   ##  ##  ####    ##      ##   ##  " << endl;
@@ -224,42 +225,57 @@ void mostrarTitulo(){
 
 }
 
- // MUESTRA TABLA FINAL ANTES QUE SE CIERRE EL JUEGO BONZO Y VUELVA AL MENU
+// MUESTRA TABLA FINAL ANTES QUE SE CIERRE EL JUEGO BONZO Y VUELVA AL MENU
 
-void mostrarTablaPuntajes(string nj1, int puntos1, int puntosCada50_1, int bonzo1, int mayorLanzamientos1,
-                           string nj2, int puntos2, int puntosCada50_2, int bonzo2, int mayorLanzamientos2) {
-    cout << "BONZO" << endl;
-    cout << "--------------------------------------------------------" << endl;
-    cout << "| HITO\t\t\t| " << nj1 << "\t | " << nj2 << "\t |" << endl;
-    cout << "--------------------------------------------------------" << endl;
-    cout << "| Puntos\t\t| " << puntos1 << " PTS\t | " << puntos2 << " PTS\t |" << endl;
-    cout << "--------------------------------------------------------" << endl;
-    cout << "| Cada 50 puntos\t| " << puntosCada50_1 << " PTS\t | "
-         << puntosCada50_2 << " PTS\t |" << endl;
-    cout << "--------------------------------------------------------" << endl;
-    cout << "| Bonzo, Ve a dormir\t| " << bonzo1 << " PTS\t | " << bonzo2 << " PTS\t |" << endl;
-    cout << "--------------------------------------------------------" << endl;
-    cout << "| Mayor lanzamientos\t| " << mayorLanzamientos1 << " PTS\t | " << mayorLanzamientos2 << " PTS\t |" << endl;
-    cout << "--------------------------------------------------------" << endl;
 
-    int total1 = puntos1 + puntosCada50_1 + bonzo1 + mayorLanzamientos1;
-    int total2 = puntos2 + puntosCada50_2 + bonzo2 + mayorLanzamientos2;
+void dibujarTabla(string nj1, int ptj1, int cada50pts1, int bonzo1, int mayorLanzamientos1,int puntajeTotal1,
+                  string nj2, int ptj2, int cada50pts2, int bonzo2, int mayorLanzamientos2,int puntajeTotal2, int puntajeGanador, string nombreGanador)
+{
+    mostrarTitulo();
+    cout << "--------------------------------------------------" << endl;
+    cout << "| HITO\t\t\t| " << nj1 << "\t | " << nj2 << "\t  |" << endl;
+    cout << "--------------------------------------------------" << endl;
+    cout << "| Puntos\t\t| " << ptj1 << " PTS\t | " <<ptj2 << " PTS\t |" << endl;
+    cout << "--------------------------------------------------" << endl;
+    cout << "| Cada 50 puntos\t| " << cada50pts1 << " PTS (" << (ptj1 / 50) << ")\t   | "
+         << cada50pts2 << " PTS (" << ptj2 / 50 << ")\t |" << endl;
+    cout << "--------------------------------------------------" << endl;
+    cout << "| Bonzo, Ve a dormir\t| " << bonzo1 << " PTS (" << bonzo1 / 5 << ")\t   | " << bonzo2 << " PTS (" << bonzo2 / 5 << ")\t |" << endl;
+    cout << "--------------------------------------------------" << endl;
 
-    cout << "| TOTAL\t\t\t| " << total1 << " PTS\t | " << total2 << " PTS\t |" << endl;
-    cout << "--------------------------------------------------------" << endl;
 
-    if (total1 > total2) {
-        cout << "GANADOR: " << nj1 << " con " << total1 << " puntos." << endl;
-    } else {
-        cout << "GANADOR: " << nj2 << " con " << total2 << " puntos." << endl;
+    if( mayorLanzamientos1 > mayorLanzamientos2){
+        cout << "| Mayor lanzamientos\t| " << "5 PTS ("s << mayorLanzamientos1 << ")" << " \t | " << "0 PTS (" <<mayorLanzamientos2 << ")\t |" << endl;
+    }else if(mayorLanzamientos1 == mayorLanzamientos2){
+        cout << "| Mayor lanzamientos\t| " << "5 PTS (" << mayorLanzamientos1 << ")" << " \t | " << "5 PTS (" <<mayorLanzamientos2 << ")\t |" << endl;
+    }else{
+        cout << "| Mayor lanzamientos\t| " << "0 PTS (" << mayorLanzamientos1 << ")" << " \t | " << "5 PTS (" <<mayorLanzamientos2 << ")\t |" << endl;
     }
+
+
+    cout << "--------------------------------------------------" << endl;
+
+
+
+    cout << "| TOTAL\t\t\t| " << puntajeTotal1 << " PTS\t | " << puntajeTotal2 << " PTS\t |" << endl;
+    cout << "--------------------------------------------------" << endl;
+
+
+    if(nombreGanador == "*"){
+
+        cout << endl << endl << "NO HUBO GANADOR !!!" << endl << endl << endl;
+    }else {
+        cout << endl << endl << "GANADOR: " << nombreGanador << " con " << puntajeGanador << " puntos." << endl << endl;
+    }
+
+
 
     cout << "Ingrese BONZO para continuar: ";
     string input;
     cin >> input;
-    while (input != "BONZO" && input != "bonzo") {
+    while (input != "BONZO" && input != "bonzo")
+    {
         cout << "Ingrese BONZO para continuar: ";
         cin >> input;
     }
 }
-
