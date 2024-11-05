@@ -240,9 +240,10 @@ int main()
                         cout << "SALIO DOS VECES EL NUMERO PROHIBIDO" << endl << endl ;
                         cout << "PIERDES LOS PUNTOS DE LA RONDA" << endl << endl;
 
-                        if(cdj1 == 3){
-                           bandera2dadosIguales = false;
-                           cout << "PIERDES 1 DADO PARA LA SIGUIENTE RONDA" << endl << endl;
+                        if(cdj1 == 3)
+                        {
+                            bandera2dadosIguales = false;
+                            cout << "PIERDES 1 DADO PARA LA SIGUIENTE RONDA" << endl << endl;
                         }
 
                         cout << "PIERDES EL TURNO" << endl << endl;
@@ -285,9 +286,12 @@ int main()
 
                             if(opcBonzo==1)
                             {
-                                if(cdj2 == 3){
-                                   banderaBonzo=false;
-                                }else{
+                                if(cdj2 == 3)
+                                {
+                                    banderaBonzo=false;
+                                }
+                                else
+                                {
                                     cout << "Tu rival ya tiene 1 dado menos, seguirá con 2 dados.. " << endl << endl;
                                 }
                             }
@@ -424,9 +428,10 @@ int main()
                         cout << "SALIO DOS VECES EL NUMERO PROHIBIDO" << endl << endl ;
                         cout << "PIERDES LOS PUNTOS DE LA RONDA" << endl << endl;
 
-                        if(cdj2 == 3){
-                           bandera2dadosIguales = false;
-                           cout << "PIERDES 1 DADO PARA LA SIGUIENTE RONDA" << endl << endl;
+                        if(cdj2 == 3)
+                        {
+                            bandera2dadosIguales = false;
+                            cout << "PIERDES 1 DADO PARA LA SIGUIENTE RONDA" << endl << endl;
                         }
 
                         cout << "PIERDES EL TURNO" << endl << endl;
@@ -469,9 +474,12 @@ int main()
 
                             if(opcBonzo==1)
                             {
-                                if(cdj1 == 3){
-                                   banderaBonzo=false;
-                                }else{
+                                if(cdj1 == 3)
+                                {
+                                    banderaBonzo=false;
+                                }
+                                else
+                                {
                                     cout << "Tu rival ya tiene 1 dado menos, seguirá con 2 dados.. " << endl << endl;
                                 }
                             }
@@ -483,6 +491,13 @@ int main()
                     }
 
 
+                    // CONTADOR MAYOR LANZAMIENTO J2  /////
+
+                    if(contProhibidos == 0 && mayorLanzamientos2 < lanzamiento)
+                    {
+                        mayorLanzamientos2 = lanzamiento;
+                    }
+
                     puntajeRondaj2 += puntajeTirada;  // se suman las tiradas en un acumulador de ronda
 
                     cout << "SUMASTE " << puntajeTirada << " PUNTOS " <<endl;
@@ -492,6 +507,9 @@ int main()
                     cin >> continuar;
 
                 }
+
+
+
                 ptj2 += puntajeRondaj2;   //aca se suma el puntaje de la ronda en el acumulador total
 
 
@@ -525,13 +543,6 @@ int main()
 
                 }
 
-
-                // CONTADOR MAYOR LANZAMIENTO J2  /////
-
-                if(contProhibidos == 0 && mayorLanzamientos2 < lanzamiento)
-                {
-                    mayorLanzamientos2 = lanzamiento;
-                }
 
                 rondaActual++;  // SUMA 1 RONDA ACTUAL
             }
@@ -615,7 +626,9 @@ int main()
             {
                 puntajeTotal1 = ptj1 + cada50pts1 + bonzo1 + puntajeMayorLanzamiento;
                 puntajeTotal2 = ptj2 + cada50pts2 + bonzo2 + puntajeMayorLanzamiento;
-            }else{
+            }
+            else
+            {
                 puntajeTotal1 = ptj1 + cada50pts1 + bonzo1;
                 puntajeTotal2 = ptj2 + cada50pts2 + bonzo2 + puntajeMayorLanzamiento;
             }
@@ -668,6 +681,19 @@ int main()
 
             // FORMULA METE AL ULTIMO GANADOR AL RANKING EN CASO DE CORRESPONDER
             incluirAlRankDe5(puntajeGanador, nombreGanador, puntajes, nombres);
+
+
+
+            // BONZO PARA SALIR
+
+            cout << endl << endl << "Ingrese BONZO para salir: " << endl << endl;
+            string salirBonzo= "";
+            cin >> salirBonzo;
+            while(salirBonzo != "BONZO" && salirBonzo != "bonzo")
+            {
+                cout << "Ingrese BONZO para salir: ";
+                cin >> salirBonzo;
+            }
 
 
 
@@ -724,7 +750,7 @@ int main()
         case 0:
         {
             system("cls");
-            cout<<" ESTA SEGURO DE QUE DESEA SALIR DEL JUEGO? (S/N) MAYUSCULA"<<endl;
+            cout<<" ESTA SEGURO DE QUE DESEA SALIR DEL JUEGO?"<<endl;
             cin>>confirmar;
             if(confirmar =='S' || confirmar == 's')
             {
